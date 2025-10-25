@@ -1,0 +1,41 @@
+.header-container {
+    border-color: black;
+    border-style: solid;
+    padding: 15px;
+}
+
+.website-title {
+    position: relative;
+    display: inline-block;
+}
+
+.sas-logo{
+    height: 10vh;
+    width: 10wh;
+    margin: 10px;
+    float:right;
+}
+
+.website-title::after,
+.website-title::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, white,#0766d1);
+  bottom: -5px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease-out;
+}
+
+.website-title::before {
+  top: -5px;
+  transform-origin: left;
+}
+
+.website-title:hover::after,
+.website-title:hover::before {
+  transform: scaleX(1);
+}

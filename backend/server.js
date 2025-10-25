@@ -22,8 +22,8 @@ app.get("/activities", async (req, res) => {
     console.log()
     const names = $("h4 a").text();
     let cleanLocations = []
-    $("div.border-bottom-light-grey.small.py-1").not(".border-top-light-grey").toArray().forEach((location) => {
-      cleanLocations.push(location.trim())
+    $("div.border-bottom-light-grey.small.py-1").not(".border-top-light-grey").each((index, element) => {
+      cleanLocations.push($(element).text().trim());
     });
     return_object = {
       names: names,

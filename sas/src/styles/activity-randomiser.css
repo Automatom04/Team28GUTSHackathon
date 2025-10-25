@@ -16,5 +16,7 @@
 
 .randomise-button {
     width: 10vw;
-    margin-left: 15vw;
+    margin-left: 240px;
+    margin-top: 5px;
+    cursor: pointer;
 }

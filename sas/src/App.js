@@ -1,7 +1,12 @@
 import logo from "./logo.svg";
 import "./App.css";
+import SyncedPlaceData from "./SyncedPlaceData";
 
 function App() {
+
+  console.log("Here0");
+  const placesJson = SyncedPlaceData(0, 1500, "restaurant");
+  console.log(placesJson);
   return (
     <div className="App">
       <header className="App-header">

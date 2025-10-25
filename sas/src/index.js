@@ -4,11 +4,13 @@ import "./index.css";
 import App from "./App";
 import Landing from "./pages/Landing";
 import reportWebVitals from "./reportWebVitals";
+import FindLocationAndNearby from "./FindLocationAndNearby";
+import RunPlaceData from "./RunPlaceData";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Landing />
+    <RunPlaceData />
   </React.StrictMode>
 );
 

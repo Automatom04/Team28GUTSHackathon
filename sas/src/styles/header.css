@@ -2,16 +2,25 @@
     border-color: black;
     border-style: solid;
     padding: 15px;
+    height: 10vh;
+
+    h1 {
+        margin:0px;
+    }
 }
+
+
 
 .website-title {
     position: relative;
     display: inline-block;
+    text-align: justify;
+    margin-top: 0px;
 }
 
 .sas-logo{
-    height: 10vh;
-    width: 10wh;
+    height: 7vh;
+    width: 7vw;
     margin: 10px;
     float:right;
 }

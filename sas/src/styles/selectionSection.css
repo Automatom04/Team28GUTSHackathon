@@ -1,0 +1,26 @@
+.choice {
+  margin: 20px;
+
+  .selection-header {
+    justify-self: center;
+  }
+}
+
+h2 {
+  .selection-header {
+    align-self: center;
+  }
+}
+.selection-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 10vh;
+
+  min-height: 100vh;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(2px);
+}

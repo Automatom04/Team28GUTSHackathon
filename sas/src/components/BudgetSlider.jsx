@@ -1,24 +1,22 @@
-import { Slider, TextField } from "@mui/material";
 import { useState } from "react";
+import StyledButton from "./StyledButton";
 
 function BudgetSlider() {
-  const [sliderValue, setSliderValue] = useState(0);
-  const handleSliderChange = (event, newValue) => {
-    setSliderValue(newValue);
-  };
+  const priceRange = ["free", "$", "$$", "$$$", "$$$$"];
+  const [selected, setSelected] = useState("");
 
   return (
     <div>
-      <TextField
-        slotProps={{ type: "number" }}
-        value={sliderValue}
-        onChange={handleSliderChange}
-      />
-      <Slider
-        valueLabelDisplay="auto"
-        onChange={handleSliderChange}
-        value={sliderValue}
-      />
+      {priceRange.map((price, index) => {
+        return (
+          <StyledButton
+            key={price}
+            selected={selected}
+            target={price}
+            trigger={() => setSelected(price)}
+          />
+        );
+      })}
     </div>
   );
 }

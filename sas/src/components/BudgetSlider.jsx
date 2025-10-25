@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
 import { useState } from "react";
+import StyledButton from "./StyledButton";
 
 function BudgetSlider() {
   const priceRange = ["free", "$", "$$", "$$$", "$$$$"];
@@ -9,16 +9,12 @@ function BudgetSlider() {
     <div>
       {priceRange.map((price, index) => {
         return (
-          <Button
-            variant={selected === price ? "contained" : "outlined"}
-            size="large"
-            style={{ margin: "20px" }}
-            onClick={() => {
-              setSelected(price);
-            }}
-          >
-            {price}
-          </Button>
+          <StyledButton
+            key={price}
+            selected={selected}
+            target={price}
+            trigger={() => setSelected(price)}
+          />
         );
       })}
     </div>

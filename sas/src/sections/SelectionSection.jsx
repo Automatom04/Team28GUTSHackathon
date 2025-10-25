@@ -11,22 +11,18 @@ function SelectionSection() {
       <div className="choice">
         <h2 className="selection-header"> Pick a Mood </h2>
         <MoodChoices />
-        <br />
       </div>
       <div className="choice">
         <h2 className="selection-header">Night-out Date </h2>
         <DateSelector />
-        <br />
       </div>
       <div className="choice">
         <h2 className="selection-header"> Budget </h2>
         <BudgetSlider />
-        <br />
       </div>
       <div className="choice">
         <h2 className="selection-header">Distance from the office </h2>
         <DistanceSlider />
-        <br />
       </div>
     </Container>
   );

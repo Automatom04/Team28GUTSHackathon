@@ -1,22 +1,32 @@
 .activity-randomiser-container{
     display:flex;
     flex-direction: column;
-}
-
-.activity-box {
-    width: 20vw;
-    height: 55vh;
     border-color: black;
     border-style:solid;
     border-radius: 10px;
     border-width: 2px;
-    margin-left:125px;
-    
+    margin-left:45px;
+    max-height: 100vh;
+    width: 30vw;
+    position:relative;
+}
+
+.activity-box {
 }
 
 .randomise-button {
     width: 10vw;
-    margin-left: 240px;
     margin-top: 5px;
     cursor: pointer;
+    margin-top: auto;
+    transform: translateX(150%);
+}
+
+.activity-text {
+    text-align: center;
+}
+
+.box-image {
+    height: 100%;
+    width: 100%;
 }

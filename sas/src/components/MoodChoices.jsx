@@ -1,7 +1,7 @@
-import { Button } from "@mui/material";
 import { useState, useEffect } from "react";
+import StyledButton from "./StyledButton";
 
-function MoodChoices() {
+function MoodChoices({ setSelectedMood }) {
   const moods = [
     "Arts / Entertainment",
     "Outdoor and Nature",
@@ -9,6 +9,11 @@ function MoodChoices() {
     "Wellness and relaxation",
   ];
   const [selected, setSelected] = useState("");
+
+  const handleSelect = (mood) => {
+    setSelected(mood);
+    setSelectedMood(mood); // update global theme too
+  };
 
   const moodBackgrounds = {
     "Arts / Entertainment":
@@ -37,27 +42,12 @@ function MoodChoices() {
     <div>
       {moods.map((mood, index) => {
         return (
-          <Button
+          <StyledButton
             key={mood}
-            variant={selected === mood ? "contained" : "outlined"}
-            size="large"
-            style={{
-              margin: "10px",
-              color: selected === mood ? "#fff" : "#222",
-              backgroundColor:
-                selected === mood
-                  ? "rgba(0, 0, 0, 0.4)"
-                  : "rgba(255, 255, 255, 0.7)",
-              borderColor: "#fff",
-              fontWeight: 600,
-              textShadow: "0 1px 2px rgba(0,0,0,0.2)",
-            }}
-            onClick={() => {
-              setSelected(mood);
-            }}
-          >
-            {mood}
-          </Button>
+            selected={selected}
+            target={mood}
+            trigger={() => handleSelect(mood)}
+          />
         );
       })}
     </div>

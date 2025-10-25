@@ -1,9 +1,8 @@
-import { Container, Button } from "@mui/material";
+import { Container } from "@mui/material";
 import MoodChoices from "../components/MoodChoices";
 import BudgetSlider from "../components/BudgetSlider";
 import DistanceSlider from "../components/DistanceSlider";
 import DateSelector from "../components/DateSelector";
-import { Link } from "react-router-dom";
 import "../styles/selectionSection.css";
 
 function SelectionSection() {

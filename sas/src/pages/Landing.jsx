@@ -1,6 +1,5 @@
 import Header from "../components/Header";
-import SelectionSection from "../sections/SelectionSection";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
 import "../styles/landing.css";
@@ -10,15 +9,9 @@ import BudgetSlider from "../components/BudgetSlider";
 import DistanceSlider from "../components/DistanceSlider";
 import DateSelector from "../components/DateSelector";
 import "../styles/selectionSection.css";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  useNavigate,
-} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function Landing() {
+function Landing({ setSelectedMood }) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [date, setDate] = useState([]);
@@ -45,7 +38,7 @@ function Landing() {
       <Container className="selection-container">
         <div className="choice">
           <h2 className="selection-header"> Pick a Mood </h2>
-          <MoodChoices />
+          <MoodChoices setSelectedMood={setSelectedMood} />
           <br />
         </div>
         <div className="choice">

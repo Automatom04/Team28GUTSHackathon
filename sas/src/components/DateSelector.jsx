@@ -9,10 +9,12 @@ function DateSelector({ onDateChange }) {
   console.log(date);
 
   const handleChange = (newValue) => {
-    const date = newValue.format("YYYY/MM/DD");
-    setValue(newValue);         
-    onDateChange(date);   
-    console.log("new value" + date);
+    setValue(newValue);
+
+    if (newValue && onDateChange) {
+      const formatted = newValue.format("YYYY/MM/DD");
+      onDateChange(formatted);
+    }
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

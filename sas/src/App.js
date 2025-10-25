@@ -6,9 +6,9 @@ import axios from "axios";
 function App() {
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
+  const fetchData = async (date) => {
     try {
-      const result = await axios(`http://localhost:5000/activities`);
+      const result = await axios(`http://localhost:5000/activities?date=${date}`);
       setData(result.data);
       console.log(result.data);
     } catch (error) {
@@ -18,7 +18,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData("2025/10/23");
   }, [])
 
   return (

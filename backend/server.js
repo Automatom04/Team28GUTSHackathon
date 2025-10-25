@@ -13,17 +13,13 @@ urls =
 
 
 app.get("/activities", async (req, res) => {
-  const url = "https://www.whatsonglasgow.co.uk/events/all-events/2025/10/23/";
+  const date = req.query.date;
+  const url = `https://www.whatsonglasgow.co.uk/events/all-events/${date}/`;
   try {
     const response = await axios.get(url);
     const html = response.data;
     const $ = cheerio.load(html);
-    const data = [];
     console.log()
-    
-    // $("div.col-12.col-sm-6").each((index, element) => {
-    //   $(element.)
-    // })
 
     let cleanLocations = []
     let cleanNames = []

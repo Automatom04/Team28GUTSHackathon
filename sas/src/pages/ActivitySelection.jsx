@@ -3,8 +3,14 @@ import ActivityRandomiser from "../components/ActivityRandomiser";
 import "../styles/activity-selection.css";
 import { Casino } from "@mui/icons-material";
 import {useState} from "react";
+import { useLocation } from "react-router-dom";
 
 function ActivitySelection(){
+    const location = useLocation();
+    const receivedData = location.state; 
+
+    console.log("recieved data for date:", receivedData);
+
     const [isRolling, setIsRolling] = useState(false);
 
     const startRolling = () => setIsRolling(false);

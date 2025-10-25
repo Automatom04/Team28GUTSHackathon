@@ -41,11 +41,15 @@ app.get("/activities", async (req, res) => {
     $("div.col-12.col-sm-6 img").each((index, element) => {
       images.push($(element).attr("data-src").trim());
     })
-    return_object = {
-      names: cleanNames,
-      locations: cleanLocations,
-      descs: cleanDescs,
-      images: images
+
+    return_object = []
+    for (let i = 0; i < cleanNames.length; i++) {
+      return_object.push({
+        name: cleanNames[i],
+        location: cleanLocations[i],
+        description: cleanDescs[i],
+        image: images[i]
+      })
     }
     res.json(return_object);
   } catch (error) {

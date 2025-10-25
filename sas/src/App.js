@@ -6,6 +6,7 @@ import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import ActivitySelection from "./pages/ActivitySelection";
+import PlannedActivity from "./pages/PlannedActivity";
 
 function App() {
   const [data, setData] = useState([]);
@@ -40,6 +41,7 @@ function App() {
             element={<Landing setSelectedMood={setSelectedMood} />}
           />
           <Route path="/activity-selection" element={<ActivitySelection />} />
+          <Route path="/planned-activity" element={<PlannedActivity />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

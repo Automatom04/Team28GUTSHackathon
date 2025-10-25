@@ -1,4 +1,4 @@
-const Mistral = require("@mistralai/mistralai");
+const { Mistral } = require("@mistralai/mistralai");
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
@@ -10,13 +10,15 @@ app.use(cors());
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
-urls = 
-
+const mistral = new Mistral({
+  apiKey: "T8D5aol0CQg09eRibOHvguaDIPiSvhkL",
+});
 
 app.get("/activities", async (req, res) => {
   const date = req.query.date;
+  console.log("Got request")
   const url = `https://www.whatsonglasgow.co.uk/events/all-events/${date}/`;
-  try {
+  // try {
     const response = await axios.get(url);
     const html = response.data;
     const $ = cheerio.load(html);
@@ -45,11 +47,27 @@ app.get("/activities", async (req, res) => {
         name: cleanNames[i],
         location: cleanLocations[i],
         description: cleanDescs[i],
-        image: images[i]
+        image: images[i],
+        mood: ""
       })
     }
+
+    const result = await mistral.chat.complete({
+    model: "mistral-small-latest",
+    messages: [
+      {
+          content: "Populate the mood field to this object. It should be either 'Party' or 'Chill' and be returned in exactly the same format with nothing before or after it: " + JSON.stringify(return_object[0]),
+          role: "user",
+        },
+      ],
+    });
+    console.log(result.choices[0].message.content);
+
     res.json(return_object);
-  } catch (error) {
-    res.status(500).json({ message: "Error accessing the URL" + error.toString()});
-  }
+  // } catch (error) {
+  //   res.status(500).json({ message: "Error accessing the URL" + error.toString()});
+  // }
+  
+
+
 });

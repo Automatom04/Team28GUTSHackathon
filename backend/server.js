@@ -53,17 +53,18 @@ app.get("/activities", async (req, res) => {
     }
     const lala = return_object.length;
 
-    for (let i = 0; i < lala; i++){
+    for (let i = 0; i < lala - 10; i+=10){
       const result = await mistral.chat.complete({
         model: "mistral-small-latest",
         messages: [
           {
-              content: "You are a text classification assistant. Your task is to read a short event or activity description and decide which one of the following three moods best fits it: chill, party, or physical activity. Choose exactly one mood — the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only the mood as single lowercase phrase: 'chill', 'party', or 'physical activity', with nothing else before or after it. Here is the desciption: " + return_object[i].description,
+              content: "You are a text classification assistant. Your task is to read a short event or activity description and decide which one of the following three moods best fits it: chill, party, or physical activity. Choose exactly one mood — the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only the mood as single lowercase phrase: 'chill', 'party', or 'physical activity', with nothing else before or after it. Here is the desciption: " + return_object.slice(i, i + 10).map((obj) => obj.description),
               role: "user",
             },
           ],
         });
-      return_object[i].mood = result.choices[0].message.content;
+        console.log(result.choices[0].message.content);
+      //return_object[i].mood = result.choices[0].message.content;
 
     }
 

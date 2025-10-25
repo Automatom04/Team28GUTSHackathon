@@ -2,20 +2,26 @@ import { Container } from "@mui/material";
 import MoodChoices from "../components/MoodChoices";
 import BudgetSlider from "../components/BudgetSlider";
 import DistanceSlider from "../components/DistanceSlider";
+import DateSelector from "../components/DateSelector";
 
 function SelectionSection() {
   return (
     <Container>
-      <h2> Pick a Mood Choice! </h2>
+      <h2 className="selection-header"> Pick a Mood Choice! </h2>
       <MoodChoices />
       <br />
 
-      <h2> Budget </h2>
+      <h2 className="selection-header">Night-out Date! </h2>
+      <DateSelector />
+      <br />
+
+      <h2 className="selection-header"> Budget </h2>
       <BudgetSlider />
       <br />
 
-      <h2>Distance from the office: </h2>
-      <BudgetSlider />
+      <h2 className="selection-header">Distance from the office: </h2>
+      <DistanceSlider />
+      <br />
     </Container>
   );
 }

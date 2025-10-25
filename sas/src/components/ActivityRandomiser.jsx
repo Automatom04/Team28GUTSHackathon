@@ -2,8 +2,8 @@ import "../styles/activity-randomiser.css";
 import { LockOpen, Lock } from "@mui/icons-material";
 import {useState} from "react";
 
-function ActivityRandomiser(){
-    const [isLocked, setIsLocked] = useState(false);
+function ActivityRandomiser({lockedState}){
+    const [isLocked, setIsLocked] = useState(lockedState);
     console.log(isLocked);
 
     return (
@@ -12,7 +12,7 @@ function ActivityRandomiser(){
                 <h1>HI</h1>
             </div>
             <div className="randomise-button" onClick ={() => setIsLocked(!isLocked)}>
-                { isLocked ? <LockOpen/> :  <Lock/>}
+                { isLocked ? <Lock/>:<LockOpen/> }
             </div>
         </div>
     )

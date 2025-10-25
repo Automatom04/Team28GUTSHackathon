@@ -20,9 +20,9 @@ function ActivitySelection(){
                 <Casino className = {`dice ${isRolling ? "rolling" : ""}`} onClick={() => {setIsRolling(true);setTimeout(() => startRolling(),3000)}}/>  
             </h2>
             <div className= "activities-container">
-                <ActivityRandomiser/>
-                <ActivityRandomiser/>
-                <ActivityRandomiser/>
+                <ActivityRandomiser lockedState = {false}/>
+                <ActivityRandomiser lockedState = {true}/>
+                <ActivityRandomiser lockedState = {true}/>
             </div>
         </div>
     )

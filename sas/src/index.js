@@ -2,14 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import Landing from "./pages/Landing";
 import reportWebVitals from "./reportWebVitals";
-import ActivitySelection from "./pages/ActivitySelection";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ActivitySelection />
+    <App />
   </React.StrictMode>
 );
 

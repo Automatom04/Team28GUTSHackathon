@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+let place;
+
+
 export async function PlaceDetails(placeID) {
     try {
-    let { Place } = await google.maps.importLibrary("places");
-    let { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
+    const { Place } = await window.google.maps.importLibrary("places");
+    
     // Use place ID to create a new Place instance.
-    let place = new Place({
+    place = new Place({
         id: placeID,
     });
     // Call fetchFields, passing the desired data fields.
@@ -17,7 +19,7 @@ export async function PlaceDetails(placeID) {
     }
     return (response);
     } catch (error) {
-      console.error("Error submitting gap information:", error.response?.data || error.message);
+      console.error("Error submitting gap information:");
     }
 };
 

@@ -3,13 +3,20 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useState } from "react";
 
-function DateSelector() {
+function DateSelector({ onDateChange }) {
   const [value, setValue] = useState(null);
   let date = `${value?.$y}/${value?.$M + 1}/${value?.$D}`;
   console.log(date);
+
+  const handleChange = (newValue) => {
+    const date = newValue.format("YYYY/MM/DD");
+    setValue(newValue);         
+    onDateChange(date);   
+    console.log("new value" + date);
+  };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker value={value} onChange={(newValue) => setValue(newValue)} />
+      <DatePicker value={value} onChange={handleChange} />
     </LocalizationProvider>
   );
 }

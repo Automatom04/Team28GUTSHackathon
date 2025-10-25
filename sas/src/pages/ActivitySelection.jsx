@@ -15,9 +15,12 @@ function ActivitySelection(){
 
     const startRolling = () => setIsRolling(false);
 
+    const firstImage = receivedData[0].image;
+
     return (
         <div>
             <Header/>
+            {/* HOW TO USE IMAGES <img src = {firstImage}></img> */}
             <h2 className="instructions">Please select your three activities! 
                 You can lock an activity if you wish to keep it, 
                 or delete an activity if you do not want to consider it.</h2>

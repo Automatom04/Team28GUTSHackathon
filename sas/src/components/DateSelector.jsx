@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function DateSelector() {
   const [value, setValue] = useState(null);
-  let date = `${value?.$D}/${value?.$M + 1}/${value?.$y}`;
+  let date = `${value?.$y}/${value?.$M + 1}/${value?.$D}`;
   console.log(date);
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 function App() {
@@ -9,12 +9,17 @@ function App() {
     try {
       const result = await axios(`http://localhost:5000/scrape?url=https://www.whatsonglasgow.co.uk/events/all-events/2025/10/23/`);
       setData(result.data);
-      console.log(data);
+      console.log(result.data);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
     }
   };
+
+  useEffect(() => {
+    fetchData();
+  })
+
   return (
   
     <div className="App">
@@ -34,7 +39,7 @@ function App() {
         
       </header>
       <div>
-        {fetchData()}
+        {data}
       </div>
     </div>
   );

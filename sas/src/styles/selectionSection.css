@@ -1,0 +1,18 @@
+.choice {
+  margin: 10px;
+
+  .selection-header {
+    justify-self: center;
+  }
+}
+
+h2 {
+  .selection-header {
+    align-self: center;
+  }
+}
+.selection-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

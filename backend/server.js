@@ -20,13 +20,21 @@ app.get("/activities", async (req, res) => {
     const $ = cheerio.load(html);
     const data = [];
     console.log()
-    const names = $("h4 a").text();
+    
+    // $("div.col-12.col-sm-6").each((index, element) => {
+    //   $(element.)
+    // })
+
     let cleanLocations = []
-    $("div.border-bottom-light-grey.small.py-1").not(".border-top-light-grey").each((index, element) => {
+    let cleanNames = []
+    $("div.col-12.col-sm-6 div.border-bottom-light-grey.small.py-1").not(".border-top-light-grey").each((index, element) => {
       cleanLocations.push($(element).text().trim());
     });
+    $("div.col-12.col-sm-6 h4:not(.mb-4) a").each((index, element) => {
+      cleanNames.push($(element).text().trim());
+    });
     return_object = {
-      names: names,
+      names: cleanNames,
       locations: cleanLocations
     }
     res.json(return_object);

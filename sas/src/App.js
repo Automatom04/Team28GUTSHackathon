@@ -1,8 +1,28 @@
-import logo from "./logo.svg";
-import "./App.css";
+import logo from './logo.svg';
+import './App.css';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
+  const [data, setData] = useState([]);
+
+  const fetchData = async (date) => {
+    try {
+      const result = await axios(`http://localhost:5000/activities?date=${date}`);
+      setData(result.data);
+      console.log(result.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setData([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchData("2025/10/23");
+  }, [])
+
   return (
+  
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -17,7 +37,11 @@ function App() {
         >
           Learn React
         </a>
+        
       </header>
+      <div>
+        {data}
+      </div>
     </div>
   );
 }

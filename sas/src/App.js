@@ -8,7 +8,6 @@ import Landing from "./pages/Landing";
 import ActivitySelection from "./pages/ActivitySelection";
 
 function App() {
-  const [data, setData] = useState([]);
   const [selectedMood, setSelectedMood] = useState("");
 
   const currentNeon = neonColors[selectedMood] || "#00ffff";

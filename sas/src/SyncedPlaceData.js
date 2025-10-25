@@ -1,15 +1,13 @@
-import logo from './logo.svg';
 import React, { useEffect, useState } from "react";
 import './App.css';
-import {autoresponse} from './Autocomplete.js';
+import FindLocationAndNearby from './FindLocationAndNearby.js';
 
-function SyncedPlaceData() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  
+export function SyncedPlaceData(activityOrLocation, budget, radius, type) {
+  var [data, setData] = useState(null);
+  var [loading, setLoading] = useState(true);
+  var [error, setError] = useState(null);
   useEffect(() => {
-  autoresponse()
+  FindLocationAndNearby(activityOrLocation, budget, radius, type)
     .then(response => {
       setData(response);
       setLoading(false);
@@ -23,27 +21,7 @@ function SyncedPlaceData() {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        > 
-          Learn React
-        </a>
-        <div>{console.log(data)}</div>
-        <div>{console.log("data")}</div>
-        <div>{data.suggestions[0].placePrediction.placeId}</div>
-      </header>
-    </div>
-  );
-}
+  return (data);
+  };
 
 export default SyncedPlaceData;

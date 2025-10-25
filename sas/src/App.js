@@ -5,9 +5,10 @@ import axios from "axios";
 
 function App() {
   const [data, setData] = useState([]);
+
   const fetchData = async () => {
     try {
-      const result = await axios(`http://localhost:5000/scrape?url=https://www.whatsonglasgow.co.uk/events/all-events/2025/10/23/`);
+      const result = await axios(`http://localhost:5000/activities`);
       setData(result.data);
       console.log(result.data);
     } catch (error) {
@@ -18,7 +19,7 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  })
+  }, [])
 
   return (
   

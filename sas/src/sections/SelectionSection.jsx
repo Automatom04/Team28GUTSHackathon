@@ -2,6 +2,7 @@ import { Container } from "@mui/material";
 import MoodChoices from "../components/MoodChoices";
 import BudgetSlider from "../components/BudgetSlider";
 import DistanceSlider from "../components/DistanceSlider";
+import DateSelector from "../components/DateSelector";
 
 function SelectionSection() {
   return (
@@ -10,12 +11,17 @@ function SelectionSection() {
       <MoodChoices />
       <br />
 
+      <h2 className="selection-header">Night-out Date! </h2>
+      <DateSelector />
+      <br />
+
       <h2 className="selection-header"> Budget </h2>
       <BudgetSlider />
       <br />
 
       <h2 className="selection-header">Distance from the office: </h2>
       <DistanceSlider />
+      <br />
     </Container>
   );
 }

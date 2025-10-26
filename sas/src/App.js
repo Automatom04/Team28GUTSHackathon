@@ -6,6 +6,7 @@ import axios from "axios";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import ActivitySelection from "./pages/ActivitySelection";
+import PlannedActivity from "./pages/PlannedActivity";
 
 function App() {
   const [selectedMood, setSelectedMood] = useState("");
@@ -19,9 +20,10 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<Landing setSelectedMood={setSelectedMood} />}
+            element={<Landing setSelectedMood={setSelectedMood} selectedMood = {selectedMood}/>}
           />
           <Route path="/activity-selection" element={<ActivitySelection />} />
+          <Route path="/planned-activity" element={<PlannedActivity />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

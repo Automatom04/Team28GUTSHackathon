@@ -39,6 +39,7 @@ function Landing({ setSelectedMood, selectedMood}) {
   return (
     <div className="selection-section-container">
       <Header />
+
       <Container className="selection-container">
         <div className="choice">
           <h2 className="selection-header"> Pick a Mood </h2>

@@ -5,3 +5,12 @@
 .submit {
     margin: 0 auto;
 }
+
+.loading-text {
+    color: #32cd32;
+    text-align: center;
+}
+
+.loader {
+    align-items: center;
+}

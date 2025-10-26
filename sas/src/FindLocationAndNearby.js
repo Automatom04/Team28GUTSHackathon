@@ -7,8 +7,12 @@ export async function FindLocationAndNearby(activity, budget, radius, type) {
   let activityPlaceID = activityAutocompleteInfo.suggestions[0].placePrediction.placeId;
 
   let activityLocation = await Autocomplete(activityPlaceID, 0, 500, "PlaceID");
+  
+  //Timeout to ensure everything is caught up
+  await new Promise(resolve => setTimeout(resolve, 1000));
   console.log("About to query venues");
   console.log(activityLocation[0]?.location);
+
   let nearbyRestaurants = await Autocomplete(activityLocation[0]?.location, 0, 1000, "restaurant");
   let nearbyBars = await Autocomplete(activityLocation[0]?.location, 0, 1000, "bar");
 

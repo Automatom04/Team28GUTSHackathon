@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import confetti from "canvas-confetti";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
+import RunPlaceData from "../RunPlaceData";
 
 function ActivitySelection() {
   const location = useLocation();
@@ -33,6 +34,22 @@ function ActivitySelection() {
   const [selectedActivity, setSelectedActivity] = useState();
   const [selectedFood, setSelectedFood] = useState();
   const [selectedBar, setSelectedBar] = useState();
+  const [places, setPlaces] = useState();
+  const [food, setFood] = useState(null);
+  const [bar, setBar] = useState(null);
+
+  useEffect(() => {
+    const result = RunPlaceData(selectedActivity.location, 0, 0, "");
+    setPlaces(result);
+    console.log("toms stuff", result);
+  }, [selectedActivity]);
+
+    useEffect(() => {
+        const resultBar = places[0].nearbyVenues[0].suggestions.slice(0,5).text.text;
+        const resultFood = places[0].nearbyVenus[1].suggestions.slice(0,5).text.text;
+        setFood(resultFood);
+        setBar(resultBar);
+    }, [places]);
 
   useEffect(() => {
     console.log("activity: ", selectedActivity);
@@ -41,8 +58,6 @@ function ActivitySelection() {
   }, [selectedActivity, selectedFood, selectedBar]);
 
   const startRolling = () => setIsRolling(false);
-
-  const firstImage = activityData[0].image;
 
   const resetLocks = () => {
     setPermLocked1(false);
@@ -113,7 +128,7 @@ function ActivitySelection() {
         {/* Dinner */}
         <ActivityRandomiser
           lockedState={true}
-          data={activityData}
+          data={food}
           isRolling={isRolling}
           isLocked={permLocked2}
           setIsLocked={setPermLocked2}
@@ -126,7 +141,7 @@ function ActivitySelection() {
         {/* Drinks */}
         <ActivityRandomiser
           lockedState={true}
-          data={activityData}
+          data={bar}
           isRolling={isRolling}
           isLocked={permLocked3}
           setIsLocked={setPermLocked3}
@@ -146,18 +161,18 @@ function ActivitySelection() {
           YAYYYY you selected your night out!!! Click next to see a full
           summary!
         </DialogContent>
-        <Button
-          onClick={() =>
-            navigate("/planned-activity", {
-              state: {
+        <Button 
+        onClick={() => 
+            navigate("/planned-activity", { 
+            state: { 
                 activity: selectedActivity,
                 food: selectedFood,
-                bar: selectedBar,
-              },
+                bar: selectedBar
+            } 
             })
-          }
+        }
         >
-          Next
+        Next
         </Button>
       </Dialog>
     </div>

@@ -12,14 +12,25 @@ import "../styles/selectionSection.css";
 import { useNavigate } from "react-router-dom";
 import {Riple} from "react-loading-indicators";
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function Landing({ setSelectedMood, selectedMood}) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [date, setDate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingText, setLoadingText] = useState("");
+
+  const loadingTextOptions = ["F.I.O.N.A is deeply contemplating your night out", "F.I.O.N.A wishes she could join you!", "F.I.O.N.A is with you in spirit!"]
 
   const fetchData = async (date, mood) => {
     try {
+      const text = loadingTextOptions[getRandomInt(loadingTextOptions.length)];
+      console.log("HELLOOOOOOO")
+      console.log(text);
+      setLoadingText(text);
       setIsLoading(true);
       console.log(date);
       const result = await axios(
@@ -71,7 +82,12 @@ function Landing({ setSelectedMood, selectedMood}) {
         >
           Submit
         </Button>
-        {isLoading && <Riple color="#32cd32" size="medium" text="" textColor=""/>}
+        {isLoading &&
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <p class="loading-text">{loadingText}</p>
+            <Riple class="loader" color="#32cd32" size="large" text="" textColor=""/>
+          </div>
+         }
         
       </Container>
     </div>

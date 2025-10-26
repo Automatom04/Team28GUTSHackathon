@@ -3,15 +3,22 @@ import { LockOpen, Lock } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import thinkingImage from "../images/thinking.jpg";
 
-function ActivityRandomiser({ data, isRolling, isLocked, setIsLocked, initialLocked, onActivityChange }) {
+function ActivityRandomiser({ data, isRolling, isLocked, setIsLocked, initialLocked, prevLocked, prevHasBeenToggled, onActivityChange, onToggle }) {
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [currentImage, setCurrentImage] = useState(thinkingImage);
     const [hasUnlockedInitial, setHasUnlockedInitial] = useState(false);
+    const [hasBeenToggled, setHasBeenToggled] = useState(false);
+
 
     const activityData = data;
 
     // Handles the lock/unlock behavior
     const toggleLock = () => {
+        if (initialLocked && !prevLocked) return;
+        if (initialLocked && !prevHasBeenToggled) return;
+
+        onToggle?.();
+
         if (initialLocked) {
             // Second and third items: allow unlock once, then lock once
             if (!hasUnlockedInitial) {

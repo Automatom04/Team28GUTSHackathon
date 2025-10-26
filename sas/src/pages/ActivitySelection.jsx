@@ -22,6 +22,9 @@ function ActivitySelection() {
   const [initialLocked2] = useState(true);
   const [initialLocked3] = useState(true);
 
+  const [toggled1, setToggled1] = useState(false);
+  const [toggled2, setToggled2] = useState(false);
+
   const [selectedActivity, setSelectedActivity] = useState();
   const [selectedFood, setSelectedFood] = useState();
   const [selectedBar, setSelectedBar] = useState();
@@ -40,6 +43,8 @@ function ActivitySelection() {
     setPermLocked1(false);
     setPermLocked2(false);
     setPermLocked3(false);
+    setToggled1(false);
+    setToggled2(false);
   };
 
   return (
@@ -53,20 +58,9 @@ function ActivitySelection() {
       </h2>
       <h2>
         <b>
-          Once you lock, you cannot unlock unless you reset your selections!
+          Once you lock, you cannot unlock unless you refresh the page.
         </b>
       </h2>
-      <Button
-        variant="contained"
-        className="submit"
-        style={{ marginBottom: "10px;" }}
-        onClick={() => {
-          resetLocks();
-        }}
-      >
-        Reset Selections
-      </Button>
-
       <h2>
         Click this button to randomise your activites:
         <Casino
@@ -86,7 +80,10 @@ function ActivitySelection() {
           isLocked={permLocked1}
           setIsLocked={setPermLocked1}
           initialLocked={false}
+          prevLocked={true}
+          prevHasBeenToggled={true}
           onActivityChange={setSelectedActivity}
+          onToggle={() => setToggled1(true)}
         />
         {/* Dinner */}
         <ActivityRandomiser
@@ -96,7 +93,10 @@ function ActivitySelection() {
           isLocked={permLocked2}
           setIsLocked={setPermLocked2}
           initialLocked={true}
+          prevLocked={permLocked1}
+          prevHasBeenToggled={toggled1}
           onActivityChange={setSelectedFood}
+          onToggle={() => setToggled2(true)}
         />
         {/* Drinks */}
         <ActivityRandomiser
@@ -106,7 +106,10 @@ function ActivitySelection() {
           isLocked={permLocked3}
           setIsLocked={setPermLocked3}
           initialLocked={true}
+          prevLocked={permLocked2}
+          prevHasBeenToggled={toggled2}
           onActivityChange={setSelectedBar}
+          onToggle={() => {}}
         />
       </div>
     </div>

@@ -10,14 +10,17 @@ import DistanceSlider from "../components/DistanceSlider";
 import DateSelector from "../components/DateSelector";
 import "../styles/selectionSection.css";
 import { useNavigate } from "react-router-dom";
+import {Riple} from "react-loading-indicators";
 
 function Landing({ setSelectedMood }) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [date, setDate] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchData = async (date) => {
     try {
+      setIsLoading(true);
       console.log(date);
       const result = await axios(
         `http://localhost:5000/activities?date=${date}`
@@ -25,6 +28,7 @@ function Landing({ setSelectedMood }) {
       setData(result.data);
       console.log(result.data);
       console.log("navigating...");
+      setIsLoading(false);
       navigate("/activity-selection", { state: result.data });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -66,6 +70,8 @@ function Landing({ setSelectedMood }) {
         >
           Submit
         </Button>
+        {isLoading && <Riple color="#32cd32" size="medium" text="" textColor=""/>}
+        
       </Container>
     </div>
   );

@@ -86,7 +86,6 @@ app.get("/activities", async (req, res) => {
         }
 
         sleep(500);
-
     }
 
     res.json(return_object);

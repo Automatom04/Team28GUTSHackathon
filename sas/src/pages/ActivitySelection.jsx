@@ -136,7 +136,12 @@ function ActivitySelection() {
         <DialogContent>
             YAYYYY you selected your night out!!! Click next to see a full summary!
         </DialogContent>
-        <Button onClick={() => navigate("/planned-activity")}>Next</Button>
+        <Button onClick={() => navigate("/planned-activity", { 
+        state: { 
+            activity: selectedActivity,
+            food: selectedFood,
+            bar: selectedBar
+      } })}>Next</Button>
     </Dialog>
     </div>
   );

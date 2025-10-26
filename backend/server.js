@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 const mistral = new Mistral({
-  apiKey: "T8D5aol0CQg09eRibOHvguaDIPiSvhkL",
+  apiKey: "T8D5aol0CQg09eRibOHvguaDIPiSvhkL",//Oops
 });
 
 

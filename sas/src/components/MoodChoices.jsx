@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import StyledButton from "./StyledButton";
-
 function MoodChoices({ setSelectedMood }) {
   const moods = [
     "Arts / Entertainment",
@@ -26,22 +25,17 @@ function MoodChoices({ setSelectedMood }) {
       "url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80')",
   };
 
-  const defaultBackground =
-    "url('https://images.unsplash.com/photo-1573497019410-1c14c4dc5b7e?auto=format&fit=crop&w=1920&q=80')";
-
   // lord help it took ages to do this
   useEffect(() => {
     document.body.style.transition = "background-image 1s ease-in-out";
     document.body.style.backgroundImage = selected
       ? moodBackgrounds[selected]
-      : defaultBackground;
+      : "none";
     document.body.style.backgroundSize = "cover";
     document.body.style.backgroundPosition = "center";
     document.body.style.backgroundRepeat = "no-repeat";
     document.body.style.backgroundAttachment = "fixed";
   }, [selected]);
-
-  document.body.style.backgroundImage = defaultBackground;
 
   return (
     <div>

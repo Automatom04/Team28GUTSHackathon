@@ -1,10 +1,10 @@
-.activities-container{
-    display:flex;
-    flex-direction: row;
+.activities-container {
+  display: flex;
+  flex-direction: row;
 }
 
 .rolling {
-    animation: rotation 1s infinite linear;
+  animation: rotation 1s infinite linear;
 }
 
 @keyframes rotation {
@@ -17,5 +17,32 @@
 }
 
 .dice {
-    cursor: pointer;
+  cursor: pointer;
+  margin: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin: 10vh;
+  background-color: rgba(244, 235, 235, 0.692);
+  backdrop-filter: blur(2px);
+  padding: 5vh;
+}
+
+.main-content {
+  margin: 5vh;
+}
+.activities-container {
+  margin: 5vh;
+  min-height: 45vh;
+}
+
+.dice-instruction {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

@@ -4,7 +4,7 @@ import "../styles/activity-selection.css";
 import { Casino } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import confetti from 'canvas-confetti';
+import confetti from "canvas-confetti";
 import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 function ActivitySelection() {
@@ -54,41 +54,48 @@ function ActivitySelection() {
 
   // when all choices selected
   useEffect(() => {
-  if (permLocked1 && permLocked2 && permLocked3 && toggled1 && toggled2 && toggled3) {
-    confetti({
-      particleCount: 100,
-      spread: 80,
-      origin: { y: 0.6 }
-    });
+    if (
+      permLocked1 &&
+      permLocked2 &&
+      permLocked3 &&
+      toggled1 &&
+      toggled2 &&
+      toggled3
+    ) {
+      confetti({
+        particleCount: 100,
+        spread: 80,
+        origin: { y: 0.6 },
+      });
 
-    setOpen(true);
-  }
-}, [permLocked1, permLocked2, permLocked3]);
+      setOpen(true);
+    }
+  }, [permLocked1, permLocked2, permLocked3]);
 
   return (
-    <div>
+    <div className="main-content">
       <Header />
       {/* HOW TO USE IMAGES <img src = {firstImage}></img> */}
-      <h2 className="instructions">
-        Please select your three activities! You can lock an activity if you
-        wish to keep it, or delete an activity if you do not want to consider
-        it.
-      </h2>
-      <h2>
-        <b>
-          Once you lock, you cannot unlock unless you refresh the page.
-        </b>
-      </h2>
-      <h2>
-        Click this button to randomise your activites:
-        <Casino
-          className={`dice ${isRolling ? "rolling" : ""}`}
-          onClick={() => {
-            setIsRolling(true);
-            setTimeout(() => startRolling(), 3000);
-          }}
-        />
-      </h2>
+      <div className="info">
+        <h2>Please select your three activities!</h2>
+        <h3 className="instructions">
+          You can lock an activity if you wish to keep it, or delete an activity
+          if you do not want to consider it.
+        </h3>
+        <h3>
+          <b>Once you lock, you cannot unlock unless you refresh the page.</b>
+        </h3>
+        <div className="dice-instruction">
+          <h3>Randomise your activites!!</h3>
+          <Casino
+            className={`dice ${isRolling ? "rolling" : ""}`}
+            onClick={() => {
+              setIsRolling(true);
+              setTimeout(() => startRolling(), 3000);
+            }}
+          />
+        </div>
+      </div>
       <div className="activities-container">
         {/* Activity */}
         <ActivityRandomiser
@@ -127,22 +134,32 @@ function ActivitySelection() {
           prevLocked={permLocked2}
           prevHasBeenToggled={toggled2}
           onActivityChange={setSelectedBar}
-          onToggle={() => {setToggled3(true)}}
+          onToggle={() => {
+            setToggled3(true);
+          }}
         />
       </div>
 
-    <Dialog open={open} onClose={() => setOpen(false)}>
+      <Dialog open={open} onClose={() => setOpen(false)}>
         <DialogTitle>NIGHT OUT TIME!</DialogTitle>
         <DialogContent>
-            YAYYYY you selected your night out!!! Click next to see a full summary!
+          YAYYYY you selected your night out!!! Click next to see a full
+          summary!
         </DialogContent>
-        <Button onClick={() => navigate("/planned-activity", { 
-        state: { 
-            activity: selectedActivity,
-            food: selectedFood,
-            bar: selectedBar
-      } })}>Next</Button>
-    </Dialog>
+        <Button
+          onClick={() =>
+            navigate("/planned-activity", {
+              state: {
+                activity: selectedActivity,
+                food: selectedFood,
+                bar: selectedBar,
+              },
+            })
+          }
+        >
+          Next
+        </Button>
+      </Dialog>
     </div>
   );
 }

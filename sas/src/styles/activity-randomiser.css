@@ -1,32 +1,29 @@
-.activity-randomiser-container{
-    display:flex;
-    flex-direction: column;
-    border-color: black;
-    border-style:solid;
-    border-radius: 10px;
-    border-width: 2px;
-    margin-left:45px;
-    max-height: 100vh;
-    width: 30vw;
-    position:relative;
-}
-
-.activity-box {
+.activity-randomiser-container {
+  display: flex;
+  flex-direction: column;
+  border-color: black;
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 2px;
+  margin-left: 45px;
+  max-height: 100vh;
+  width: 30vw;
+  position: relative;
 }
 
 .randomise-button {
-    width: 10vw;
-    margin-top: 5px;
-    cursor: pointer;
-    margin-top: auto;
-    transform: translateX(150%);
+  width: 10vw;
+  margin-top: 5px;
+  cursor: pointer;
+  margin-top: auto;
+  transform: translateX(150%);
 }
 
 .activity-text {
-    text-align: center;
+  text-align: center;
 }
 
 .box-image {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 }

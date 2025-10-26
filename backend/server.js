@@ -3,7 +3,7 @@ const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 const cors = require("cors");
-
+const more = require("./additionalactivities");
 const app = express();
 app.use(cors());
 
@@ -83,7 +83,9 @@ app.get("/activities", async (req, res) => {
           temp.slice(0, 5);
         }
         for(let i = 0; i<temp.length; i++){
-          
+          if (counter==lala){
+            break;
+          }
           console.log(counter);
           return_object[counter].mood = temp[i];
           counter++;
@@ -93,13 +95,15 @@ app.get("/activities", async (req, res) => {
 
     }
     
+    return_object.push(...more.activities);
     const moodfilter = return_object.filter(item => item.mood == mood)
-
+    
     res.json(moodfilter);
   // } catch (error) {
   //   res.status(500).json({ message: "Error accessing the URL" + error.toString()});
   // }
-  
+    
+
 
 
 });

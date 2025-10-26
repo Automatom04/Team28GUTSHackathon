@@ -17,10 +17,10 @@ function PlannedActivity() {
       <div className="container">
         <h1>Activity</h1>
         {displayItems(activity)}
-        <hr style={{ margin: "100px" }} />
+        <hr style={{ margin: "50px" }} />
         <h1 className="title">Food</h1>
         {displayItems(food)}
-        <hr style={{ margin: "100px" }} />
+        <hr style={{ margin: "50px" }} />
         <h1 className="title">Bar</h1>
         {displayItems(bar)}
       </div>
@@ -36,10 +36,12 @@ function displayItems(item) {
       <h3 className="items">
         {item.name} | {item.location}
       </h3>
-      <h4 className="items" style={{ fontWeight: "300" }}>
-        {item.description}
-      </h4>
-      <img src={item.image} alt="image of activity" />
+      <div content>
+        <h4 className="items" style={{ fontWeight: "300" }}>
+          {item.description}
+        </h4>
+        <img src={item.image} alt="image of activity" />
+      </div>
     </div>
   );
 }

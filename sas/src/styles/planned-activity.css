@@ -14,12 +14,17 @@
 }
 
 img {
-  height: 40vw;
+  height: 30vw;
   align-self: center;
-  width: 40vw;
+  width: 30vw;
 }
 
 .title {
   align-self: center;
   margin-top: 50px;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
 }

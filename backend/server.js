@@ -14,6 +14,16 @@ const mistral = new Mistral({
   apiKey: "T8D5aol0CQg09eRibOHvguaDIPiSvhkL",
 });
 
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
+
 app.get("/activities", async (req, res) => {
   const date = req.query.date;
   console.log("Got request")
@@ -61,7 +71,7 @@ app.get("/activities", async (req, res) => {
         model: "mistral-small-latest",
         messages: [
           {
-              content: "You are a text classification assistant. Your task is to read a few short event or activity descriptions which are separated by commas, and decide which one of the following three moods best fits it: chill, party, or physical activity. Choose exactly one mood for each description— the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only a list of comma separated moods as single lowercase phrase: 'chill', 'party', or 'physical activity', with nothing else before or after it. Here are the desciptions: " + return_object.slice(i, i + 5).map((obj) => obj.description),
+              content: "You are a text classification assistant. Your task is to read a few short event or activity descriptions which are separated by commas, and decide which one of the following four moods best fits it: 'Arts & entertainment', 'Outdoor & Nature', 'Creative Experiences' or Wellness & Relaxation. Choose exactly one mood for each description— the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only a list of comma separated moods as single lowercase phrase: 'Arts & entertainment', 'Outdoor & Nature', 'Creative Experiences' or Wellness & Relaxation, with nothing else before or after it. Here are the desciptions. Only give a maximum of 5 moods: " + return_object.slice(i, i + 5).map((obj) => obj.description),
               role: "user",
             },
           ],
@@ -74,7 +84,8 @@ app.get("/activities", async (req, res) => {
           return_object[counter].mood = temp[i];
           counter++;
         }
-      //return_object[i].mood = result.choices[0].message.content;
+
+        sleep(500);
 
     }
 

@@ -9,12 +9,12 @@ function SelectionSection() {
   return (
     <Container className="selection-container">
       <div className="choice">
-        <h2 className="selection-header"> Pick a Mood </h2>
-        <MoodChoices />
-      </div>
-      <div className="choice">
         <h2 className="selection-header">Night-out Date </h2>
         <DateSelector />
+      </div>
+      <div className="choice">
+        <h2 className="selection-header"> Pick a Mood </h2>
+        <MoodChoices />
       </div>
       <div className="choice">
         <h2 className="selection-header"> Budget </h2>

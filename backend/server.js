@@ -90,7 +90,6 @@ app.get("/activities", async (req, res) => {
         }
 
         sleep(500);
-
     }
     
     const moodfilter = return_object.filter(item => item.mood == mood)

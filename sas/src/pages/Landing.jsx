@@ -12,18 +12,18 @@ import "../styles/selectionSection.css";
 import { useNavigate } from "react-router-dom";
 import {Riple} from "react-loading-indicators";
 
-function Landing({ setSelectedMood }) {
+function Landing({ setSelectedMood, selectedMood}) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [date, setDate] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchData = async (date) => {
+  const fetchData = async (date, mood) => {
     try {
       setIsLoading(true);
       console.log(date);
       const result = await axios(
-        `http://localhost:5000/activities?date=${date}`
+        `http://localhost:5000/activities?date=${date}&mood=${mood}`
       );
       setData(result.data);
       console.log(result.data);
@@ -65,7 +65,7 @@ function Landing({ setSelectedMood }) {
           className="submit"
           style={{ marginBottom: "10px;" }}
           onClick={() => {
-            fetchData(date);
+            fetchData(date, selectedMood);
           }}
         >
           Submit

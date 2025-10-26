@@ -13,10 +13,13 @@ export async function PlaceDetails(placeID) {
     });
     // Call fetchFields, passing the desired data fields.
     await place.fetchFields({ fields: ['displayName', 'formattedAddress', 'location'] })
-    let response = {
-        "location" : place.location,
-        "displayName" : place.displayName
-    }
+    
+    let response = [{
+        displayName: place.displayName, 
+        location: place.location
+    }];
+    console.log("PlaceDetails");
+    console.log(response);
     return (response);
     } catch (error) {
       console.error("Error submitting gap information:");

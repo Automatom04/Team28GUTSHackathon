@@ -26,6 +26,7 @@ function sleep(milliseconds) {
 
 app.get("/activities", async (req, res) => {
   const date = req.query.date;
+  const mood = req.query.mood.toLowerCase();
   console.log("Got request")
   const url = `https://www.whatsonglasgow.co.uk/events/all-events/${date}/`;
   // try {
@@ -64,22 +65,25 @@ app.get("/activities", async (req, res) => {
     const lala = return_object.length;
     let counter = 0;
     console.log(lala);
-
+    console.log(mood);
     for (let i = 0; i < lala; i+=5){
       console.log(return_object.slice(i, i + 5).map((obj) => obj.description));
       const result = await mistral.chat.complete({
         model: "mistral-small-latest",
         messages: [
           {
-              content: "You are a text classification assistant. Your task is to read a few short event or activity descriptions which are separated by commas, and decide which one of the following four moods best fits it: 'Arts & entertainment', 'Outdoor & Nature', 'Creative Experiences' or Wellness & Relaxation. Choose exactly one mood for each description— the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only a list of comma separated moods as single lowercase phrase: 'Arts & entertainment', 'Outdoor & Nature', 'Creative Experiences' or Wellness & Relaxation, with nothing else before or after it. Here are the desciptions. Only give a maximum of 5 moods: " + return_object.slice(i, i + 5).map((obj) => obj.description),
+              content: "You are a text classification assistant. Your task is to read a few short event or activity descriptions which are separated by commas, and decide which one of the following four moods best fits it: 'party', 'active', 'creative' or 'chill'. Choose exactly one mood for each description— the one that best fits the overall vibe of the description. If the description could fit multiple, pick the one that feels most dominant. Return only a list of comma separated moods as single lowercase phrase: 'party', 'active', 'creative' or 'chill', with nothing else before or after it. Here are the desciptions. Only give a maximum of 5 moods: " + return_object.slice(i, i + 5).map((obj) => obj.description),
               role: "user",
             },
           ],
         });
         console.log(result.choices[0].message.content);
         temp = result.choices[0].message.content.split(",");
-
+        if (temp.length > 5){
+          temp.slice(0, 5);
+        }
         for(let i = 0; i<temp.length; i++){
+          
           console.log(counter);
           return_object[counter].mood = temp[i];
           counter++;
@@ -87,8 +91,10 @@ app.get("/activities", async (req, res) => {
 
         sleep(500);
     }
+    
+    const moodfilter = return_object.filter(item => item.mood == mood)
 
-    res.json(return_object);
+    res.json(moodfilter);
   // } catch (error) {
   //   res.status(500).json({ message: "Error accessing the URL" + error.toString()});
   // }

@@ -13,6 +13,7 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.12.2",
+    "canvas-confetti": "^1.9.4",
     "cheerio": "^1.1.2",
     "cors": "^2.8.5",
     "dayjs": "^1.11.18",

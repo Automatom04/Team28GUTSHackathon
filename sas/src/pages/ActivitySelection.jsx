@@ -3,12 +3,16 @@ import ActivityRandomiser from "../components/ActivityRandomiser";
 import "../styles/activity-selection.css";
 import { Casino } from "@mui/icons-material";
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { Button } from "@mui/material";
+import { useLocation, useNavigate } from "react-router-dom";
+import confetti from 'canvas-confetti';
+import { Dialog, DialogTitle, DialogContent, Button } from "@mui/material";
 
 function ActivitySelection() {
   const location = useLocation();
   const activityData = location.state;
+  const navigate = useNavigate();
+
+  const [open, setOpen] = useState(false);
 
   // console.log("recieved data for date:", activityData);
 
@@ -24,6 +28,7 @@ function ActivitySelection() {
 
   const [toggled1, setToggled1] = useState(false);
   const [toggled2, setToggled2] = useState(false);
+  const [toggled3, setToggled3] = useState(false);
 
   const [selectedActivity, setSelectedActivity] = useState();
   const [selectedFood, setSelectedFood] = useState();
@@ -46,6 +51,19 @@ function ActivitySelection() {
     setToggled1(false);
     setToggled2(false);
   };
+
+  // when all choices selected
+  useEffect(() => {
+  if (permLocked1 && permLocked2 && permLocked3 && toggled1 && toggled2 && toggled3) {
+    confetti({
+      particleCount: 100,
+      spread: 80,
+      origin: { y: 0.6 }
+    });
+
+    setOpen(true);
+  }
+}, [permLocked1, permLocked2, permLocked3]);
 
   return (
     <div>
@@ -109,9 +127,22 @@ function ActivitySelection() {
           prevLocked={permLocked2}
           prevHasBeenToggled={toggled2}
           onActivityChange={setSelectedBar}
-          onToggle={() => {}}
+          onToggle={() => {setToggled3(true)}}
         />
       </div>
+
+    <Dialog open={open} onClose={() => setOpen(false)}>
+        <DialogTitle>NIGHT OUT TIME!</DialogTitle>
+        <DialogContent>
+            YAYYYY you selected your night out!!! Click next to see a full summary!
+        </DialogContent>
+        <Button onClick={() => navigate("/planned-activity", { 
+        state: { 
+            activity: selectedActivity,
+            food: selectedFood,
+            bar: selectedBar
+      } })}>Next</Button>
+    </Dialog>
     </div>
   );
 }

@@ -1,4 +1,3 @@
-import Header from "../components/Header";
 import { useState } from "react";
 import axios from "axios";
 import { Button } from "@mui/material";
@@ -16,7 +15,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function Landing({ setSelectedMood, selectedMood}) {
+function Landing({ setSelectedMood, selectedMood }) {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const [date, setDate] = useState([]);
@@ -49,8 +48,6 @@ function Landing({ setSelectedMood, selectedMood}) {
 
   return (
     <div className="selection-section-container">
-      <Header />
-
       <Container className="selection-container">
         <div className="choice">
           <h2 className="selection-header"> Pick a Mood </h2>

@@ -1,7 +1,7 @@
-import Header from "../components/Header";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import "../styles/planned-activity.css";
 
-function PlannedActivity(){
+function PlannedActivity() {
   const location = useLocation();
   const activity = location.state.activity;
   const food = location.state.food;
@@ -11,29 +11,37 @@ function PlannedActivity(){
   console.log("food", food);
   console.log("bar", bar);
 
-    return (
-        <div className="planned-activity-container">
-            <Header/>
-            <h1>Here is your chosen night out!!!</h1>
-            <h1>Activity</h1>
-            {displayItems(activity)}
-            <h1>Food</h1>
-            {displayItems(food)}
-            <h1>Bar</h1>
-            {displayItems(bar)}
-        </div>
-    )
+  return (
+    <div className="planned-activity-container">
+      <h1 className="title">Here is your chosen night out!!!</h1>
+      <div className="container">
+        <h1>Activity</h1>
+        {displayItems(activity)}
+        <hr style={{ margin: "50px" }} />
+        <h1 className="title">Food</h1>
+        {displayItems(food)}
+        <hr style={{ margin: "50px" }} />
+        <h1 className="title">Bar</h1>
+        {displayItems(bar)}
+      </div>
+    </div>
+  );
 }
 
 export default PlannedActivity;
 
-function displayItems(item){
-    return (
-        <div className="display-items-container">
-            <h2>{item.name}</h2>
-            <h2>{item.location}</h2>
-            <h2>{item.description}</h2>
-            <img src = {item.image}></img>
-        </div>
-    )
+function displayItems(item) {
+  return (
+    <div className="display-items-container">
+      <h3 className="items">
+        {item.name} | {item.location}
+      </h3>
+      <div content>
+        <h4 className="items" style={{ fontWeight: "300" }}>
+          {item.description}
+        </h4>
+        <img src={item.image} alt="image of activity" />
+      </div>
+    </div>
+  );
 }

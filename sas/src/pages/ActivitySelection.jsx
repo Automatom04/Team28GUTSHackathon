@@ -89,7 +89,6 @@ function ActivitySelection() {
 
   return (
     <div className="main-content">
-      <Header />
       {/* HOW TO USE IMAGES <img src = {firstImage}></img> */}
       <div className="info">
         <h2>Please select your three activities!</h2>

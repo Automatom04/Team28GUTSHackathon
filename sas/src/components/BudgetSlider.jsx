@@ -2,7 +2,7 @@ import { useState } from "react";
 import StyledButton from "./StyledButton";
 
 function BudgetSlider() {
-  const priceRange = ["free", "$", "$$", "$$$", "$$$$"];
+  const priceRange = ["$", "$$", "$$$", "$$$$"];
   const [selected, setSelected] = useState("");
 
   return (

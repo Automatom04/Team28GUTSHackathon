@@ -16,6 +16,7 @@ const mistral = new Mistral({
 
 app.get("/activities", async (req, res) => {
   const date = req.query.date;
+  const mood = req.query.date;
   console.log("Got request")
   const url = `https://www.whatsonglasgow.co.uk/events/all-events/${date}/`;
   // try {
@@ -78,7 +79,10 @@ app.get("/activities", async (req, res) => {
 
     }
 
-    res.json(return_object);
+    const moodfilter = return_object.filter(item => item.mood == mood)
+
+
+    res.json(moodfilter);
   // } catch (error) {
   //   res.status(500).json({ message: "Error accessing the URL" + error.toString()});
   // }

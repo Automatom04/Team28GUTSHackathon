@@ -92,7 +92,6 @@ app.get("/activities", async (req, res) => {
         }
 
         sleep(500);
-
     }
     
     return_object.push(...more.activities);

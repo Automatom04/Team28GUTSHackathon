@@ -18,7 +18,7 @@ function DateSelector({ onDateChange }) {
   };
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker value={value} onChange={handleChange}/>
+      <DatePicker value={value} onChange={handleChange} />
     </LocalizationProvider>
   );
 }

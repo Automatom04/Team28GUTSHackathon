@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Landing from "./pages/Landing";
 import ActivitySelection from "./pages/ActivitySelection";
 import PlannedActivity from "./pages/PlannedActivity";
+import Header from "./components/Header";
 
 function App() {
   const [selectedMood, setSelectedMood] = useState("");
@@ -15,12 +16,18 @@ function App() {
 
   return (
     <ThemeProvider theme={getNeonTheme(currentNeon)}>
+      <Header />
       <BrowserRouter>
         {/* Routes */}
         <Routes>
           <Route
             path="/"
-            element={<Landing setSelectedMood={setSelectedMood} selectedMood = {selectedMood}/>}
+            element={
+              <Landing
+                setSelectedMood={setSelectedMood}
+                selectedMood={selectedMood}
+              />
+            }
           />
           <Route path="/activity-selection" element={<ActivitySelection />} />
           <Route path="/planned-activity" element={<PlannedActivity />} />

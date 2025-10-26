@@ -15,13 +15,13 @@ export async function Autocomplete(activityOrLocation, budget, radius, type) {
       let autoresponse = await axios.post("https://places.googleapis.com/v1/places:autocomplete",
         {
         "input": activityOrLocation,
-        "locationBias": {
+        "locationRestriction": {
           "circle": {
             "center": {
                 "latitude": 55.85971,
                 "longitude": -4.26670
             },
-          "radius": 16000
+          "radius": 16000,
         }
     }
       },
@@ -46,8 +46,8 @@ export async function Autocomplete(activityOrLocation, budget, radius, type) {
         "locationBias": {
           "circle": {
             "center": {
-                "latitude": activityOrLocation[0],
-                "longitude": activityOrLocation[1]
+                "latitude": activityOrLocation.lat(),
+                "longitude": activityOrLocation.lng()
             },
           "radius": radius
         }

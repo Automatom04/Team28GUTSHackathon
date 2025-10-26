@@ -3,12 +3,7 @@ import StyledButton from "./StyledButton";
 import partyImage from '../images/party.jpg';
 import creativeImage from '../images/arts.jpg';
 function MoodChoices({ setSelectedMood }) {
-  const moods = [
-    "Party",
-    "Chill",
-    "Creative",
-    "Active",
-  ];
+  const moods = ["Party", "Chill", "Creative", "Active"];
   const [selected, setSelected] = useState(null);
 
   const handleSelect = (mood) => {
